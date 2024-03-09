@@ -1,16 +1,16 @@
-resource "aws_vpc" "new_vpc" {
+resource "aws_vpc" "demo_vpc" {
   cidr_block = "172.16.0.0/20"
   
   tags = {
-    Name = "new_vpc"
+    Name = "demo_vpc"
   }
 }
 
-resource "aws_internet_gateway" "tarun_igw" {
+resource "aws_internet_gateway" "demo_igw" {
   vpc_id = aws_vpc.new_vpc.id
 
   tags = {
-    Name = "tarun_igw"
+    Name = "demo_igw"
   }
 }
 
@@ -19,7 +19,7 @@ resource "aws_route_table" "public" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.tarun_igw.id
+    gateway_id = aws_internet_gateway.demo_igw.id
   }
 }
 
